@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# This test implements a count up/down time.
+# This test implements a date count up/down timer.
 #
 
 import json
