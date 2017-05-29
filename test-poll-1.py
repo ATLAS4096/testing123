@@ -9,6 +9,8 @@ import json
 import requests
 import datetime
 
+quiet = False
+
 r = requests.get('https://elections.huffingtonpost.com/pollster/api/v2/polls/gallup-27729')
 
 if 200 == r.status_code:
@@ -23,14 +25,18 @@ else:
 # print r.text
 
 text_a = data["poll_questions"][0]["sample_subpopulations"][0]["responses"][0]["text"]
-print text_a
 value_a = data["poll_questions"][0]["sample_subpopulations"][0]["responses"][0]["value"]
-print value_a
+
+if not quiet:
+    print text_a
+    print value_a
 
 text_d = data["poll_questions"][0]["sample_subpopulations"][0]["responses"][1]["text"]
-print text_d
 value_d = data["poll_questions"][0]["sample_subpopulations"][0]["responses"][1]["value"]
-print value_d
+
+if not quiet:
+    print text_d
+    print value_d
 
 inJSON = json.dumps({text_a: value_a, text_d: value_d}, 
     sort_keys=True, 
