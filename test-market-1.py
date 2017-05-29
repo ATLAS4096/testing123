@@ -13,22 +13,25 @@
 import json
 import googlefinance
 
+quiet = False
 dowTicker = 'INDEXDJX:.DJI'
 spTicker = 'INDEXSP:.INX'
 
 data = googlefinance.getQuotes({ dowTicker, spTicker})
     
 ticker_d = data[0]["StockSymbol"]
-print ticker_d
-
 price_d = data[0]["LastTradePrice"]
-print price_d
+
+if not quiet:
+    print ticker_d
+    print price_d
 
 ticker_s = data[1]["StockSymbol"]
-print ticker_s
-
 price_s = data[1]["LastTradePrice"]
-print price_s
+
+if not quiet:
+    print ticker_s
+    print price_s
 
 inJSON = json.dumps({ticker_d: price_d, ticker_s: price_s}, 
     sort_keys=True, 
